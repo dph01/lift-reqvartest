@@ -1,9 +1,6 @@
-This repository contains tempaltes for Lift project.
+A test to show ReqestVar's behaving differently when they contain a String vs when they contain a Mapper object.
 
-These templates offer a starting point for your Lift-based project.
-
-If you want to start with Scala 2.8.1, use the templates in the scala_28 directory
-
-If you want to start with Scala 2.9.0-1, use the templates in the scala_29 directory
-
-Questions, feedback, etc. please join the conversation at https://groups.google.com/forum/#!forum/liftweb
+1) Go to http://localhost:8080/reqvareventlist
+2) click edit
+3) click submit
+4) enjoy the NPE!!
