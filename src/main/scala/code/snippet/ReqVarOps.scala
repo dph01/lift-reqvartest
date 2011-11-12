@@ -18,8 +18,10 @@ object ReqVarString extends Logger {
   }
   
   def list = {
-    var name = "fred"
-    "*" #> { Text(name) ++ Text(" ") ++ SHtml.link("/reqvarstringedit", () => {nameVar(name)}, Text("edit")) }
+     ".row *" #> List("fred","harry").map( n => {
+      ".eventName *" #> Text(n) &
+      ".actions *" #> {SHtml.link("/reqvarstringedit", () => {nameVar(n)}, Text("edit")) }
+    } )
   }
 }
 
@@ -32,8 +34,10 @@ object ReqVarEvent extends Logger {
   }
   
   def list = {
-    var e = MyEvent.create.eventName("bob")
-    "*" #> { Text(e.eventName.is) ++ Text(" ") ++ SHtml.link("/reqvareventedit", () => {eventVar(e)}, Text("edit")) }
+    ".row *" #> MyEvent.findAll.map( t => {
+      ".eventName *" #> Text(t.eventName) &
+      ".actions *" #> {SHtml.link("/reqvareventedit", () => {eventVar(t)}, Text("edit")) }
+    } )
   }
 }
 

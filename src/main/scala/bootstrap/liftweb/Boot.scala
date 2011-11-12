@@ -84,5 +84,11 @@ class Boot {
 
     // Make a transaction span the whole HTTP request
     S.addAround(DB.buildLoanWrapper)
+    
+    // add in some test data
+    if ( MyEvent.findAll.length == 0 ) {
+      if ( MyEvent.create.eventName("bob").save == false )
+        throw new Exception("failed to create Event Test data")
+    }
   }
 }
