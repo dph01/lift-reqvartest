@@ -38,7 +38,7 @@ libraryDependencies ++= {
 		"org.mortbay.jetty" % "jetty-plus" % "6.1.26" % "test,container",
 		// "org.eclipse.jetty" % "jetty-webapp" % "7.4.5.v20110725" % "compile,test->default" ,
 		"junit" % "junit" % "4.5" % "test",
-		// "org.scala-tools.testing" %% "specs" % "1.6.9" % "test",
+		"org.scala-tools.testing" %% "specs" % "1.6.9" % "test",
     "org.scalatest" %% "scalatest" % "1.6.1" % "test",
 		// "org.scalatest" %% "scalatest" % "1.5.1" % "test",
     "org.scala-lang" % "scala-compiler" % "2.9.1"

@@ -34,8 +34,8 @@ class Boot {
     // Use Lift's Mapper ORM to populate the database
     // you don't need to use Mapper to use Lift... use
     // any ORM you want
-    import code.snippet.MyEvent
-    Schemifier.schemify(true, Schemifier.infoF _, User, MyEvent)
+    import code.snippet.Event
+    Schemifier.schemify(true, Schemifier.infoF _, User, Event)
 
     // where to search snippet
     LiftRules.addToPackages("code")
@@ -44,10 +44,14 @@ class Boot {
     def sitemap = SiteMap(
       Menu.i("Home") / "index",
      // >> User.AddUserMenusAfter, // the simple way to declare a menu
+        Menu("Simply Lift 4.2") /  "simply4-2" ,
         Menu("ReqVar String Edit") /  "reqvarstringedit" >> Hidden,
         Menu("ReqVar String List") /  "reqvarstringlist",
         Menu("ReqVar Event Edit") /  "reqvareventedit" >> Hidden,
-        Menu("ReqVar Event List") /  "reqvareventlist"
+        Menu("ReqVar Event List") /  "reqvareventlist",
+        Menu("ReqVar Event Edit Only") /  "reqvareventeditonly",
+        Menu("Event Edit Only") /  "eventeditonly",
+        Menu("String Edit Only") /  "stringeditonly"
       // more complex because this menu allows anything in the
       // /static path to be visible
       //Menu(Loc("Static", Link(List("static"), true, "/static/index"), "Static Content"))
@@ -86,8 +90,8 @@ class Boot {
     S.addAround(DB.buildLoanWrapper)
     
     // add in some test data
-    if ( MyEvent.findAll.length == 0 ) {
-      if ( MyEvent.create.eventName("bob").save == false )
+    if ( Event.findAll.length == 0 ) {
+      if ( Event.create.eventName("bob").save == false )
         throw new Exception("failed to create Event Test data")
     }
   }
