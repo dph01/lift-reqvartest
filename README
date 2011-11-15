@@ -11,3 +11,26 @@ with a string object:
 2) click edit
 3) click submit
 4) enjoy the lack of a NPE!!
+
+Added a test to show closures around RequestVar's behaving differently from closures around regular objects:
+- it appears that a new RequestVar object gets created every time the 'closure' is called whereas the regular object]
+does not ....
+
+go to http://localhost:8080/reqvareventeditonly (calls ReqVarEventEditOnly.edit)
+
+console shows the following results:
+
+<< initial page load >>
+16:12 DEBUG tEditOnly$Dummy - creating new Dummy
+16:12 DEBUG arEventEditOnly - dummy is: 1321373565085           // (1)
+16:12 DEBUG e.snippet.Event - creating new Event
+<< entering data and clicking submit >>
+16:12 DEBUG arEventEditOnly - in callback to setName with value: test ....
+16:12 DEBUG e.snippet.Event - creating new Event   // <== note new Event created, but not new Dummy
+16:12 DEBUG arEventEditOnly - eventVar.eventName before being set: default
+16:12 DEBUG arEventEditOnly - dummy is: 1321373565085            // <== note value of dummy is same as at (1)
+16:12 DEBUG arEventEditOnly - ...done in callback to set name
+16:12 DEBUG arEventEditOnly - processing submit for name: test
+<< page is reloaded >>
+16:12 DEBUG tEditOnly$Dummy - creating new Dummy
+16:12 DEBUG arEventEditOnly - dummy is: 1321373579834
