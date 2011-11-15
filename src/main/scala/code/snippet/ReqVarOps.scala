@@ -66,49 +66,13 @@ class ReqVarEventEditOnly extends Logger {
     debug("eventVar.notes before being set: " + eventVarEdit.is.notes)
     debug("dummy is: " + Dummy.time)
     eventVarEdit.is.notes(name)
-    debug("...done in callback to set name")
+    debug("...done in callback to setNotes")
   }
   
   def edit = {
     "name=name" #> SHtml.text(eventVarEdit.is.eventName.is, setName(_)) &
     "name=notes" #> SHtml.text(eventVarEdit.is.notes.is, setNotes(_)) &
-    "type=submit" #> SHtml.onSubmitUnit(() => {debug("processing submit for name: " + eventVarEdit.is.eventName.is )})
-  }
-
-}
-
-class EventEditOnly extends Logger {
-  
-  var event = Event.create.eventName("default")
-  
-  def setName(name: String ) = {
-      debug("in callback to setName with value: " + name + " ....\n") 
-      debug("name before being set: " + event.eventName )
-      event.eventName( name )
-      debug("...done in callback to setNme\n")
-  }
-  
-  def edit = {
-    "name=name" #> SHtml.text(event.eventName.is, setName(_)) &
-    "type=submit" #> SHtml.onSubmitUnit(() => {debug("processing submit for name: " + event.eventName.is )})
-  }
-
-}
-
-class StringEditOnly extends Logger {
-  
-  var myName = "default"
-  
-  def setName(name: String ) = {
-      debug("in callback to setNme with value: " + name + " ....\n") 
-      debug("name before being set: " + myName )
-      myName = name
-      debug("...done in callback to setNme\n")
-  }
-  
-  def edit = {
-    "name=name" #> SHtml.text(myName, setName(_)) &
-    "type=submit" #> SHtml.onSubmitUnit(() => {debug("processing submit for name")})
+    "type=submit" #> SHtml.onSubmitUnit(() => {debug("processing submit for name" )})
   }
 
 }
@@ -144,7 +108,6 @@ object OnSubmit {
     "type=submit" #> SHtml.onSubmitUnit(() => { println("processing submit") } )
   }
 }
-////////////////////////////////////////////////////////// */
 object OnSubmit {
   var name = ""
   var age = 0
@@ -153,9 +116,9 @@ object OnSubmit {
     "type=submit" #> SHtml.onSubmitUnit(() => { println("processing submit") } )
   }
 }
+////////////////////////////////////////////////////////// */
 /* State not preserved:
  * 
-  
 // tidied + vars moved out of render + onSubmit => text + object -> class
 class OnSubmit {
   var name = ""
@@ -225,78 +188,4 @@ object OnSubmit {
 }
  
  =================================================
- */
-  /*
-object OnSubmit extends Logger {
-  var myName = ""
-  
-  def setName(name: String ) = {
-      debug("in callback to set name....\n") 
-      debug("name before being set: " + myName )
-      myName = name
-      debug("...done in callback to set name\n")
-  }
-  
-  def render = {
-    "name=name" #> SHtml.text(myName, myName = _ ) &
-    "type=submit" #> SHtml.onSubmitUnit(() => debug("processing submit"))
-  }
-}
-
-object OnSubmit {
-  def render = {
-    var name = ""
-    var age = 0
-    // define some variables to put our values into
-    // process the form
-    def process() {
-      // if the age is < 13, display an error
-      if (age < 13) S.error("Too young!")
-      else {
-        // otherwise give the user feedback and
-        // redirect to the home page
-        S.notice("Name: "+name)
-        S.notice("Age: "+age)
-        S.redirectTo("/")
-      }
-    }
-    // associate each of the form elements
-    // with a function... behavior to perform when the
-    // for element is submitted
-    "name=name" #> SHtml.onSubmit(name = _) & // set the name
-    // set the age variable if we can convert to an Int
-    "name=age" #> SHtml.onSubmit(s => asInt(s).foreach(age = _)) &
-    // when the form is submitted, process the variable
-    "type=submit" #> SHtml.onSubmitUnit(process)
-  }
-}
-   */ 
-/*
- * object OnSubmit {
-  def render = {
-    var name = ""
-    var age = 0
-    // define some variables to put our values into
-    // process the form
-    def process() {
-      // if the age is < 13, display an error
-      if (age < 13) S.error("Too young!")
-      else {
-        // otherwise give the user feedback and
-        // redirect to the home page
-        S.notice("Name: "+name)
-        S.notice("Age: "+age)
-        S.redirectTo("/")
-      }
-    }
-    // associate each of the form elements
-    // with a function... behavior to perform when the
-    // for element is submitted
-    "name=name" #> SHtml.onSubmit(name = _) & // set the name
-    // set the age variable if we can convert to an Int
-    "name=age" #> SHtml.onSubmit(s => asInt(s).foreach(age = _)) &
-    // when the form is submitted, process the variable
-    "type=submit" #> SHtml.onSubmitUnit(process)
-  }
-}
  */

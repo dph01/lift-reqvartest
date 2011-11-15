@@ -44,14 +44,11 @@ class Boot {
     def sitemap = SiteMap(
       Menu.i("Home") / "index",
      // >> User.AddUserMenusAfter, // the simple way to declare a menu
-        Menu("Simply Lift 4.2") /  "simply4-2" ,
         Menu("ReqVar String Edit") /  "reqvarstringedit" >> Hidden,
         Menu("ReqVar String List") /  "reqvarstringlist",
         Menu("ReqVar Event Edit") /  "reqvareventedit" >> Hidden,
         Menu("ReqVar Event List") /  "reqvareventlist",
-        Menu("ReqVar Event Edit Only") /  "reqvareventeditonly",
-        Menu("Event Edit Only") /  "eventeditonly",
-        Menu("String Edit Only") /  "stringeditonly"
+        Menu("ReqVar Event Edit Only") /  "reqvareventeditonly"
       // more complex because this menu allows anything in the
       // /static path to be visible
       //Menu(Loc("Static", Link(List("static"), true, "/static/index"), "Static Content"))
